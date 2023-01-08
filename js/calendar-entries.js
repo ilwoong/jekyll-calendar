@@ -19,11 +19,14 @@ let calendar_entries = {
 			{% if entry_month == month.id %}
 				{
 					"id": "{{entry.id}}",
+					"group": "{{entry.group}}",
 					"name": "{{entry.name}}",
 					"description": "{{entry.description}}",
 					"category": "{{entry.category}}",
 					"singular": {{entry.singular}},
-					"date": "{{entry.date}}"
+					"date": "{{entry.date}}",
+					"time": "{{entry.time}}",
+					"location": "{{entry.location}}",
 				},
 			{% endif %}
 	{% endfor %}],

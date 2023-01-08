@@ -1,3 +1,6 @@
+- id: 7
+  name: Sunday
+  abbreviation: Sun
 - id: 1
   name: Monday
   abbreviation: Mon
@@ -16,6 +19,3 @@
 - id: 6
   name: Saturday
   abbreviation: Sat
-- id: 7
-  name: Sunday
-  abbreviation: Sun

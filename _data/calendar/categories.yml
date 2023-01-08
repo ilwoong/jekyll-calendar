@@ -1,9 +1,9 @@
-- id: birthday
-  name: Birthday
-  color: "#0000ee"
 - id: event
-  name: Event
-  color: "#00ee00"
-- id: election
-  name: Election
-  color: "#ee00ee"
+  name: 일정
+  color: "#ffc107"
+- id: trip
+  name: 출장
+  color: "#673ab7"
+- id: vacation
+  name: 휴가
+  color: "#8bc34a"

@@ -15,7 +15,7 @@ var CalendarShell = function () {
 
 		this.calendar = new Calendar({
 			siblingMonths: true,
-			weekStart: 1 /*monday*/
+			weekStart: 7 /*sunday*/
 		});
 		this.month_obj = null;
 		this.month = 0;
@@ -165,10 +165,12 @@ var CalendarShell = function () {
 			entry_elem.setAttribute("id", id);
 			entry_elem.setAttribute("style", "grid-row:"+ entry.loc.row +"; grid-column:"+entry.loc.column+"; bottom: calc("+align_self +"px)");
 
-			let title = entry.name.substring(0,30);
-			if (ye > 1){
-				title = new String(ye) + ": " + title;
+			let title = entry.group ? entry.group : entry.name;
+			title += " " + entry.description;
+			if (entry.time) {
+				title = entry.time + ": " + title;
 			}
+
 			let entry_text_elem = document.createTextNode(title);
 			entry_elem.appendChild(entry_text_elem);
 			calendar_elem.appendChild(entry_elem);
@@ -193,17 +195,31 @@ var CalendarShell = function () {
 			detail_headline_elem.appendChild(detail_headline_text_elem);
 			detail_elem.appendChild(detail_headline_elem);
 
-			if (ye > 1){
-				let detail_year_elem = document.createElement("h3");
-				let detail_year_text_elem = document.createTextNode(new String(ye));
-				detail_year_elem.appendChild(detail_year_text_elem);
-				detail_elem.appendChild(detail_year_elem);
+			if (entry.singular) {
+				let detail_desc_elem = document.createElement("h2");
+				detail_desc_elem.innerHTML = ye;
+				detail_elem.appendChild(detail_desc_elem);
+			}
+
+			if (entry.time && entry.location) {
+				let detail_desc_elem = document.createElement("p");
+				detail_desc_elem.innerHTML = entry.time + ": " + entry.location;
+				detail_elem.appendChild(detail_desc_elem);
+			}
+			else if (entry.time) {
+				let detail_desc_elem = document.createElement("p");
+				detail_desc_elem.innerHTML = entry.time;
+				detail_elem.appendChild(detail_desc_elem);
+			}
+			else if (entry.location){
+				let detail_desc_elem = document.createElement("p");
+				detail_desc_elem.innerHTML = entry.location;
+				detail_elem.appendChild(detail_desc_elem);
 			}
 
 			let detail_desc_elem = document.createElement("p");
 			detail_desc_elem.innerHTML = entry.description;
 			detail_elem.appendChild(detail_desc_elem);
-
 
 			entry_elem.addEventListener("mouseover", this.mouseover.bind(this));
 			entry_elem.addEventListener("mouseout", this.mouseout.bind(this));
@@ -211,7 +227,7 @@ var CalendarShell = function () {
 		}
 	};
 
-	/** 
+	/**
 	 * Return year and month.
 	 * Returns those values as defined in
 	 * window.location.hash with format "#yyyy-mm". If window.location.hash
@@ -237,7 +253,7 @@ var CalendarShell = function () {
 		}
 		return {"year": date_year, "month": date_month}
 	}
-	/** 
+	/**
 	 * Return row and column on the calendar of the specified day.
 	 */
 	CalendarShell.getDayLocation = function getDayLocation(day, month) {
@@ -250,7 +266,7 @@ var CalendarShell = function () {
 		return {"column": column, "row": row}
 	}
 
-	/** 
+	/**
 	 * Display an entry's details on click
 	 */
 	_proto.onclick = function onclick(event) {
@@ -273,7 +289,7 @@ var CalendarShell = function () {
 			}
 		}
 	}
-	/** 
+	/**
 	 * Display an entry's details
 	 */
 	_proto.mouseover = function mouseover(event) {
@@ -285,7 +301,7 @@ var CalendarShell = function () {
 			detail.style.display = "block";
 		}
 	}
-	/** 
+	/**
 	 * Hide an entry's details
 	 */
 	_proto.mouseout = function mouseout(event) {

@@ -1,0 +1,10 @@
+<div class="clock">
+    <div class="clock-header">
+        {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}
+    </div>
+    <div class="clock-container">
+        <div id="clock-ampm" class="clock-ampm"></div>
+        <div id="clock-time" class="clock-time"></div>
+        <div id="clock-date" class="clock-date"></div>
+    </div>
+</div>
