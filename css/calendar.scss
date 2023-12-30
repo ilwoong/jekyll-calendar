@@ -135,6 +135,10 @@
 		grid-row: 6;
 	}
 
+	&:nth-of-type(n + 35):nth-of-type(-n + 42) {
+		grid-row: 7;
+	}
+
 	&:nth-of-type(7n + 1) {
 		grid-column: 1/1;
 	}
