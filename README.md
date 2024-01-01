@@ -6,7 +6,7 @@ HTML and JavaScript calendar for Jekyll based calendar entries.
 All Jekyll related data is located in `_data/calendar`.
 
 ## Entries
-All entries are stored in `_data/calendar/entries.yml`.
+All entries are stored in `_data/calendar/`.
 
 Exemplary entry:
 ```yml

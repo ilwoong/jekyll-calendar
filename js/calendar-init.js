@@ -33,7 +33,6 @@ let calendar_month_update = function(direction){
 		let link = "#" + year + "-" + month;
 		window.open(link, "_self");
 		location.reload();
-
 }
 
 document.addEventListener('DOMContentLoaded', function() {

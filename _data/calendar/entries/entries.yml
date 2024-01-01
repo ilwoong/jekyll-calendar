@@ -3,13 +3,13 @@
   description: 회의
   category: event
   singular: false
-  date: 2020-01-02
+  date: "2020-01-02"
   time: "11:00"
 
 - id: a2
   name: ME
   description: 휴가
-  category: vacation
+  category: dayoff
   singular: false
   date: "2023-01-10"
 

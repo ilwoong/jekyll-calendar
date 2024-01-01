@@ -4,6 +4,9 @@
 - id: trip
   name: 출장
   color: "#673ab7"
-- id: vacation
+- id: dayoff
   name: 휴가
   color: "#8bc34a"
+- id: holiday
+  name: 휴일
+  color: "#d32f2f"

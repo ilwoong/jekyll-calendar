@@ -41,6 +41,7 @@ var CalendarShell = function () {
 	};
 
 	_proto.initCalendar = function initCalendar() {
+		let today = new Date();
 		let year_elem = this.container.querySelector("#calendar-year");
 		if(year_elem){
 			year_elem.innerHTML = this.year;
@@ -71,6 +72,9 @@ var CalendarShell = function () {
 			day_elem.classList.add("day");
 			if (day.siblingMonth) {
 				day_elem.classList.add("day--disabled");
+			}
+			if ((this.year == today.getFullYear()) && (this.month == today.getMonth()) && (day.day == today.getDate())) {
+				day_elem.classList.add("day--today");
 			}
 			let day_text_elem = document.createTextNode(day.day);
 			day_elem.appendChild(day_text_elem);
@@ -168,7 +172,7 @@ var CalendarShell = function () {
 			let title = entry.group ? entry.group : entry.name;
 			title += " " + entry.description;
 			if (entry.time) {
-				title = entry.time + ": " + title;
+				title = "(" + entry.time + ") " + title;
 			}
 
 			let entry_text_elem = document.createTextNode(title);
@@ -203,7 +207,7 @@ var CalendarShell = function () {
 
 			if (entry.time && entry.location) {
 				let detail_desc_elem = document.createElement("p");
-				detail_desc_elem.innerHTML = entry.time + ": " + entry.location;
+				detail_desc_elem.innerHTML = "(" + entry.time + ") " + entry.location;
 				detail_elem.appendChild(detail_desc_elem);
 			}
 			else if (entry.time) {

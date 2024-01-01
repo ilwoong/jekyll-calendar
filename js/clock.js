@@ -8,9 +8,10 @@ function setClock() {
     var now = new Date();
     var hour = now.getHours();
     var minute = now.getMinutes();
+    var second = now.getSeconds() % 2;
     var ampm = hour >= 12 ? '오후' : '오전';
 
-    if (hour >= 12) {
+    if (hour > 12) {
         hour -= 12;
     }
 
@@ -19,7 +20,7 @@ function setClock() {
 
     document.getElementById("clock-ampm").innerHTML = ampm;
     document.getElementById("clock-date").innerHTML = now.toLocaleDateString() + " " + WEEKDAY[now.getDay()];
-    document.getElementById("clock-time").innerHTML = hour + ":" + minute;
+    document.getElementById("clock-time").innerHTML = hour + (second == 0 ? "<span style='opacity: 0'>:</span>" : ":") + minute;
 }
 
 window.onload = function() {
